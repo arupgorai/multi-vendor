@@ -1,0 +1,31 @@
+{
+  "name": "multi-vendor",
+  "version": "1.0.0",
+  "description": "multi vendor app || e-commerce app || flipkart clone",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "multi",
+    "vendor",
+    "app",
+    "||",
+    "e-commerce",
+    "app",
+    "||",
+    "flipkart",
+    "clone"
+  ],
+  "author": "Arup Gorai",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.1",
+    "nodemailer": "^6.9.2",
+    "nodemon": "^2.0.22"
+  }
+}
