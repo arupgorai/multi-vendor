@@ -1,11 +1,12 @@
 import { React, useState } from 'react';
+import axios from 'axios';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import styles from '../../styles/styles';
 import { Link } from 'react-router-dom';
 import { RxAvatar } from 'react-icons/rx';
-import axios from 'axios';
 import { server } from '../../server.js';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Singup = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +15,8 @@ const Singup = () => {
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
+  const navigate = useNavigate();
+
   const handleFileInputChange = e => {
     const file = e.target.files[0];
     setAvatar(file);
@@ -21,6 +24,31 @@ const Singup = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    const formData = new FormData();
+
+    formData.append('file', avatar);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+
+    axios
+      .post(`${server}/user/create-user`, formData, config)
+      .then(response => {
+        if (response.data.success) {
+          navigate('/');
+        }
+        console.log('response :-', response);
+      })
+      .catch(err => {
+        console.log('error :-', err);
+      });
     console.log('form submitted');
   };
 
